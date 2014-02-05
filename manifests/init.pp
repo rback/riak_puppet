@@ -2,7 +2,7 @@ class riak ($join_ip = undef, $listen_ip = $::ipaddress_eth2, $riak_control = fa
   require riak::basho-rpm-repo
 
   package { "riak":
-    ensure => "1.3.0-1.el6"
+    ensure => "1.4.7-1.el6"
   }
 
   file { ["/data","/data/riak","/data/riak/logs", "/data/riak/ring"]:
