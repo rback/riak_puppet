@@ -18,4 +18,15 @@ You can test it with:
 Or test Riak Control on node riak1 by going with your browser to: https://10.0.3.10:8068 
 and logging in with user/pass (it will whine about invalid certificate)
 
-See /manifests/site.pp on how to use
+Example:
+	node "riak1", "riak2", "riak3" {
+		exec { "purge default firewall":
+            command => "/sbin/iptables --flush",
+            user    => 'root',
+        }
+	  	if $::fqdn == "riak1.vagrant.local" {
+	        class { "riak": riak_control => true}
+	  	} else {
+	        class { "riak": join_ip => "10.0.3.10" }
+	  	}
+	}
